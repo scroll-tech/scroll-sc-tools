@@ -1,0 +1,28 @@
+[package]
+name = "scroll-sc-tools"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+# openvm
+openvm-native-recursion = { git = "https://github.com/openvm-org/openvm.git", rev = "7f87e1d", default-features = false }
+openvm-sdk = { git = "https://github.com/openvm-org/openvm.git", rev = "7f87e1d", default-features = false, features = [
+    "parallel",
+    "bench-metrics",
+] }
+
+# revm
+revm = "19.0"
+
+# snark-verifier
+snark-verifier-sdk = { git = "https://github.com/axiom-crypto/snark-verifier", branch = "zkvm-v0.1", default-features = false, features = [
+    "loader_halo2",
+    "halo2-axiom",
+    "display",
+] }
+
+# miscellaneous
+eyre = "0.6"
+tracing = "0.1"
+tracing-subscriber = "0.3"

@@ -1,19 +1,21 @@
-mod generate;
+use clap::Parser;
 
-mod utils;
+mod commands;
+
+mod digest;
+
+mod verifier;
+
+#[derive(Parser)]
+struct Cli {
+    #[command(subcommand)]
+    commands: commands::Commands,
+}
 
 fn main() -> eyre::Result<()> {
-    // Generate the initialisation code for the EVM PLONK verifier.
-    let init_code = generate::generate()?;
+    let cmd = Cli::parse();
 
-    // Get the deployed code and codehash of the EVM PLONK verifier contract.
-    let (deployed_code, codehash) = utils::deploy(&init_code)?;
-
-    println!(
-        "verifier contract bytecode size = {:?}",
-        deployed_code.len()
-    );
-    println!("verifier contract codehash      = {:?}", codehash);
+    cmd.commands.run()?;
 
     Ok(())
 }

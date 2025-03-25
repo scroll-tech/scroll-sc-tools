@@ -18,8 +18,8 @@ impl ComputeCommand {
 
         let (exe, leaf) = if self.phase_1 {
             (
-                scroll_zkvm_verifier::commitments::bundle_legacy::EXE_COMMIT,
-                scroll_zkvm_verifier::commitments::bundle_legacy::LEAF_COMMIT,
+                scroll_zkvm_verifier::commitments::bundle_euclidv1::EXE_COMMIT,
+                scroll_zkvm_verifier::commitments::bundle_euclidv1::LEAF_COMMIT,
             )
         } else {
             (

@@ -2,7 +2,7 @@
 
 The repository offers tools for the Security Council to run and validate certain operations against Scroll's ZkVM [release](https://github.com/scroll-tech/zkvm-prover/releases/tag/v0.2.0)
 
-### Setup
+## Setup
 
 - Clone the `scroll-sc-tools` repository:
 ```shell
@@ -14,7 +14,7 @@ $ git clone git@github.com:scroll-tech/scroll-sc-tools.git && cd scroll-sc-tools
 rustup toolchain install nightly-2025-02-14
 ```
 
-### Generate Verifier
+## Generate Verifier
 
 Scroll's ZkVM architecture proves Scroll's L2 blocks in layers (chunking -> batching -> bundling) where only the final layer (aka bundle) is an EVM-verifiable SNARK proof.
 
@@ -24,11 +24,30 @@ The proof itself is verified by a `Verifier` contract, that's essentially a PLON
 
 The `generate-verifier` command allows one to trustlessly re-generate the verifier contract and prints out its codehash, that can be validated against on-chain available data.
 
+### Prerequisite
+
+In order to generate the verifier contract, we also need to first get the appropriate KZG trusted setup parameters. To get them from OpenVM's setup step, we first need to install
+`openvm` and then go through the setup process.
+
+* [Build and Install OpenVM](https://book.openvm.dev/getting-started/install.html#option-2-build-from-source) with [commit@3c35e9f](https://github.com/openvm-org/openvm/tree/3c35e9f369da8dee065a089fb72f3580af7dcaf9)
+* Validate `openvm` version
+```shell
+$ cargo openvm --version
+
+# should print
+# cargo-openvm openvm (3c35e9f 2025-03-28T01:25:30.964028000Z)
+```
+* Setup KZG parameters (Note: requires ~200Gi memory and takes a long time to run)
+```shell
+$ cargo openvm setup
+```
+
+Upon finishing the above prerequisite, please go ahead and generate the verifier contract:
 ```shell
 $ cargo run -- generate-verifier
 ```
 
-### Compute Digests
+## Compute Digests
 
 The final layer (aka bundle) circuit is identified by two digests, namely `digest_1` and `digest_2`.
 

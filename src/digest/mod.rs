@@ -1,4 +1,5 @@
 use clap::Args;
+use hex::ToHex;
 
 mod compute;
 
@@ -28,8 +29,30 @@ impl ComputeCommand {
             )
         };
 
-        let _digest_1 = compute::compress_commitment(&exe);
-        let _digest_2 = compute::compress_commitment(&leaf);
+        // Fr::to_bytes(&self) spits out little-endian bytes, so we reverse the order to finally
+        // display the big-endian bytes in hex-encoded form.
+        let digest_1 = compute::compress_commitment(&exe)
+            .to_bytes()
+            .into_iter()
+            .rev()
+            .collect::<Vec<u8>>();
+        let digest_2 = compute::compress_commitment(&leaf)
+            .to_bytes()
+            .into_iter()
+            .rev()
+            .collect::<Vec<u8>>();
+
+        let phase = if self.phase_1 { "Phase-1" } else { "Phase-2" };
+        println!(
+            "Euclid {}: digest-1={}",
+            phase,
+            digest_1.encode_hex::<String>()
+        );
+        println!(
+            "Euclid {}: digest-2={}",
+            phase,
+            digest_2.encode_hex::<String>()
+        );
 
         Ok(())
     }

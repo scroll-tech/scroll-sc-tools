@@ -8,7 +8,7 @@ const DEFAULT_PARAMS_DIR: &str = concat!(env!("HOME"), "/.openvm/params/");
 pub(crate) fn generate() -> eyre::Result<Vec<u8>> {
     let halo2_params_reader = CacheHalo2ParamsReader::new(DEFAULT_PARAMS_DIR);
 
-    let agg_pk = Sdk.agg_keygen(
+    let agg_pk = Sdk::new().agg_keygen(
         AggConfig::default(),
         &halo2_params_reader,
         &DefaultStaticVerifierPvHandler,

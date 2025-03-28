@@ -11,7 +11,10 @@ impl GenerateCommand {
     pub fn run(self) -> eyre::Result<()> {
         let init_code = generate::generate()?;
 
-        let (_deployed_code, _codehash) = deploy::deploy(&init_code)?;
+        let (deployed_code, codehash) = deploy::deploy(&init_code)?;
+
+        println!("verifier.bin code len={}", deployed_code.len());
+        println!("verifier.bin codehash={:?}", codehash);
 
         Ok(())
     }

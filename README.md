@@ -26,23 +26,14 @@ The `generate-verifier` command allows one to trustlessly re-generate the verifi
 
 ### Prerequisite
 
-In order to generate the verifier contract, we also need to first get the appropriate KZG trusted setup parameters. To get them from OpenVM's setup step, we first need to install
-`openvm` and then go through the setup process.
+In order to generate the verifier contract, we also need to first get the KZG trusted setup parameters.
 
-* [Build and Install OpenVM](https://book.openvm.dev/getting-started/install.html#option-2-build-from-source) with [commit@3c35e9f](https://github.com/openvm-org/openvm/tree/3c35e9f369da8dee065a089fb72f3580af7dcaf9)
-* Validate `openvm` version
+* Download the params
 ```shell
-$ cargo openvm --version
-
-# should print
-# cargo-openvm openvm (3c35e9f 2025-03-28T01:25:30.964028000Z)
-```
-* Setup KZG parameters (Note: requires ~200Gi memory and takes a long time to run)
-```shell
-$ cargo openvm setup
+$ sh scripts/download-params.sh
 ```
 
-Upon finishing the above prerequisite, please go ahead and generate the verifier contract:
+* Generate the verifier contract:
 ```shell
 $ cargo run -- generate-verifier
 ```

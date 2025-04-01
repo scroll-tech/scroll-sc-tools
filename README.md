@@ -38,6 +38,8 @@ $ sh scripts/download-params.sh
 $ cargo run -- generate-verifier
 ```
 
+Note: The above step requires very large amounts of computation and memory (~200 GB).
+
 ## Compute Digests
 
 The final layer (aka bundle) circuit is identified by two digests, namely `digest_1` and `digest_2`.

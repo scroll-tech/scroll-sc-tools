@@ -26,6 +26,15 @@ The `generate-verifier` command allows one to trustlessly re-generate the verifi
 
 ### Prerequisite
 
+* Install solidity compiler via [solidity version manager](https://github.com/alloy-rs/svm-rs).
+```shell
+$ cargo install svm-rs
+
+$ svm install 0.8.24
+
+$ solc --version
+```
+
 In order to generate the verifier contract, we also need to first get the KZG trusted setup parameters.
 
 * Download the params

@@ -47,7 +47,7 @@ $ bash scripts/download-params.sh
 $ RUST_MIN_STACK=16777216 cargo run --release -- generate-verifier
 ```
 
-Note: The above step requires very large amounts of computation and memory (~200 GB).
+Note: The above step requires very large amounts of computation and memory (~200 GB). It took about 4 minutes on AWS c7a.24xlarge.
 
 ## Compute Digests
 

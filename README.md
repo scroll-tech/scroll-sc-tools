@@ -30,7 +30,7 @@ The `generate-verifier` command allows one to trustlessly re-generate the verifi
 ```shell
 $ cargo install svm-rs
 
-$ svm install 0.8.24
+$ svm install 0.8.19
 
 $ solc --version
 ```
@@ -44,10 +44,10 @@ $ bash scripts/download-params.sh
 
 * Generate the verifier contract:
 ```shell
-$ cargo run -- generate-verifier
+$ RUST_MIN_STACK=16777216 cargo run --release -- generate-verifier
 ```
 
-Note: The above step requires very large amounts of computation and memory (~200 GB).
+Note: The above step requires very large amounts of computation and memory (~200 GB). It took about 4 minutes on AWS c7a.24xlarge.
 
 ## Compute Digests
 

@@ -44,7 +44,7 @@ $ bash scripts/download-params.sh
 
 * Generate the verifier contract:
 ```shell
-$ cargo run --release -- generate-verifier
+$ RUST_MIN_STACK=16777216 cargo run --release -- generate-verifier
 ```
 
 Note: The above step requires very large amounts of computation and memory (~200 GB).

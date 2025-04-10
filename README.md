@@ -39,7 +39,7 @@ In order to generate the verifier contract, we also need to first get the KZG tr
 
 * Download the params
 ```shell
-$ sh scripts/download-params.sh
+$ bash scripts/download-params.sh
 ```
 
 * Generate the verifier contract:

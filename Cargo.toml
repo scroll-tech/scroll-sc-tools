@@ -24,7 +24,7 @@ snark-verifier-sdk = { version = "0.2.0", default-features = false, features = [
 ] }
 
 # scroll-tech/zkvm-prover
-scroll-zkvm-verifier = { git = "https://github.com/scroll-tech/zkvm-prover", tag = "v0.2.0" }
+scroll-zkvm-verifier = { git = "https://github.com/scroll-tech/zkvm-prover", tag = "v0.3.0" }
 
 # miscellaneous
 clap = "4"

@@ -35,3 +35,26 @@ hex = "0.4"
 alloy-primitives = { git = "https://github.com/scroll-tech/alloy-core", branch = "v0.8.18-euclid-upgrade" }
 ruint = { git = "https://github.com/scroll-tech/uint.git", branch = "v1.12.3" }
 tiny-keccak = { git = "https://github.com/scroll-tech/tiny-keccak", branch = "scroll-patch-v2.0.2-euclid-upgrade" }
+
+[patch."ssh://git@github.com/scroll-tech/openvm-gpu.git"]
+openvm = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-algebra-complex-macros = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-algebra-guest = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-bigint-guest = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-build = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-circuit = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-custom-insn = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-continuations = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-ecc-guest = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-instructions = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-keccak256-guest = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-native-circuit = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-native-compiler = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-native-recursion = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-native-transpiler = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-pairing-guest = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-rv32im-guest = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-rv32im-transpiler = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-sdk = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-sha256-guest = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }
+openvm-transpiler = { git = "ssh://git@github.com/scroll-tech/openvm-internal.git", rev = "30d96a9" }

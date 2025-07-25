@@ -1,26 +1,23 @@
 use revm::{
-    Context, Evm, Handler, InMemoryDB,
-    primitives::{
-        B256, Bytes, ExecutionResult, Output, TxEnv, TxKind, keccak256, specification::CancunSpec,
-    },
+    Context, ExecuteCommitEvm, MainBuilder, MainContext,
+    context_interface::result::{ExecutionResult, Output},
+    database::InMemoryDB,
+    primitives::{B256, Bytes, TxKind, keccak256},
 };
 
 /// Simulate deployment of initialisation code to get the deployed code and codehash.
 pub(crate) fn deploy(init_code: &[u8]) -> eyre::Result<(Bytes, B256)> {
-    let mut evm = Evm::new(
-        Context::new_with_db(InMemoryDB::default()),
-        Handler::mainnet::<CancunSpec>(),
-    );
+    let bytecode: Bytes = init_code.to_vec().into();
+    let ctx = Context::mainnet()
+        .modify_tx_chained(|tx| {
+            tx.kind = TxKind::Create;
+            tx.data = bytecode;
+        })
+        .with_db(InMemoryDB::default());
 
-    *evm.tx_mut() = TxEnv {
-        gas_limit: u64::MAX,
-        transact_to: TxKind::Create,
-        data: init_code.to_vec().into(),
-        ..Default::default()
-    };
+    let mut evm = ctx.build_mainnet();
 
-    let result = evm.transact_commit()?;
-    let code = match result {
+    let code = match evm.replay_commit()? {
         ExecutionResult::Success {
             output: Output::Create(code, _),
             ..

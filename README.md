@@ -62,9 +62,6 @@ potentially post digests for malicious circuitry. These digests are available on
 An independent party can re-compute these digests from the ZkVM released circuitry and validate against on-chain values.
 
 ```shell
-# Euclid Phase-1
-$ cargo run --release -- compute-digest --phase-1
-
-# Euclid Phase-2
-$ cargo run --release -- compute-digest --phase-2
+# Feynman
+$ cargo run --release -- compute-digest
 ```

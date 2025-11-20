@@ -1,6 +1,6 @@
 # Scroll Security Council Tools
 
-The repository offers tools for the Security Council to run and validate certain operations against Scroll's ZkVM [release](https://github.com/scroll-tech/zkvm-prover/releases/tag/v0.2.0)
+The repository offers tools for the Security Council to run and validate certain operations against Scroll's ZkVM [release](https://github.com/scroll-tech/zkvm-prover/releases/tag/v0.7.0-rc.5)
 
 ## Setup
 
@@ -11,7 +11,7 @@ $ git clone git@github.com:scroll-tech/scroll-sc-tools.git && cd scroll-sc-tools
 - [Install Rust](https://www.rust-lang.org/tools/install)
 - Install Specific Nightly Toolchain (specified in [rust-toolchain.toml](./rust-toolchain.toml))
 ```
-rustup toolchain install nightly-2025-02-14
+rustup toolchain install nightly-2025-08-18
 ```
 
 ## Generate Verifier
@@ -62,6 +62,5 @@ potentially post digests for malicious circuitry. These digests are available on
 An independent party can re-compute these digests from the ZkVM released circuitry and validate against on-chain values.
 
 ```shell
-# Feynman
 $ cargo run --release -- compute-digest
 ```

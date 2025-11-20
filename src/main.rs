@@ -7,6 +7,7 @@ mod digest;
 mod verifier;
 
 #[derive(Parser)]
+#[command(about = "Tools for Scroll's Security Council")]
 struct Cli {
     #[command(subcommand)]
     commands: commands::Commands,

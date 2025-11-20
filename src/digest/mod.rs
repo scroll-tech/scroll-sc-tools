@@ -37,8 +37,8 @@ impl ComputeCommand {
             .rev()
             .collect::<Vec<u8>>();
 
-        println!("Feynman: digest-1={}", digest_1.encode_hex::<String>());
-        println!("Feynman: digest-2={}", digest_2.encode_hex::<String>());
+        println!("digest-1={}", digest_1.encode_hex::<String>());
+        println!("digest-2={}", digest_2.encode_hex::<String>());
 
         Ok(())
     }

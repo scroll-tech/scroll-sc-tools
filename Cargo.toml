@@ -33,6 +33,7 @@ scroll-zkvm-verifier = { git = "https://github.com/scroll-tech/zkvm-prover", tag
 clap = "4"
 eyre = "0.6"
 hex = "0.4"
+reqwest = { version = "0.12", features = ["blocking"] }
 
 [patch.crates-io]
 revm = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }

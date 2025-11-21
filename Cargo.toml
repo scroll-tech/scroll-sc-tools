@@ -16,6 +16,9 @@ openvm-sdk = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.4.1",
 ] }
 openvm-stark-sdk = { git = "https://github.com/openvm-org/stark-backend.git", tag = "v1.2.1" }
 
+# scroll-tech/zkvm-prover
+scroll-zkvm-verifier = { git = "https://github.com/scroll-tech/zkvm-prover", tag = "v0.7.0" }
+
 # revm
 revm = "=24.0.0"
 
@@ -30,3 +33,17 @@ snark-verifier-sdk = { version = "=0.2.1", default-features = false, features = 
 clap = "4"
 eyre = "0.6"
 hex = "0.4"
+
+[patch.crates-io]
+revm = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-bytecode = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-context = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-context-interface = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-database = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-database-interface = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-handler = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-inspector = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-interpreter = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-precompile = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-primitives = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-state = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }

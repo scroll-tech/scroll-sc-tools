@@ -1,6 +1,6 @@
 # Scroll Security Council Tools
 
-The repository offers tools for the Security Council to run and validate certain operations against Scroll's ZkVM [release](https://github.com/scroll-tech/zkvm-prover/releases/tag/v0.7.0-rc.5)
+The repository offers tools for the Security Council to run and validate certain operations against Scroll's ZkVM [release](https://github.com/scroll-tech/zkvm-prover/releases/tag/v0.7.0)
 
 ## Setup
 

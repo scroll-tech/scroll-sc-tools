@@ -16,9 +16,6 @@ openvm-sdk = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.4.1",
 ] }
 openvm-stark-sdk = { git = "https://github.com/openvm-org/stark-backend.git", tag = "v1.2.1" }
 
-# scroll-tech/zkvm-prover
-scroll-zkvm-verifier = { git = "https://github.com/scroll-tech/zkvm-prover", tag = "v0.7.0" }
-
 # revm
 revm = "=24.0.0"
 
@@ -28,6 +25,9 @@ snark-verifier-sdk = { version = "=0.2.1", default-features = false, features = 
     "halo2-axiom",
     "display",
 ] }
+
+# scroll-tech/zkvm-prover
+scroll-zkvm-verifier = { git = "https://github.com/scroll-tech/zkvm-prover", tag = "v0.7.0" }
 
 # miscellaneous
 clap = "4"

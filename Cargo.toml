@@ -10,7 +10,7 @@ openvm-native-recursion = { git = "https://github.com/openvm-org/openvm.git", ta
 openvm-sdk = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.4.1", default-features = false, features = [
   "parallel",
   "evm-prove",
-  "legacy-v1-3",
+  "evm-verify",
   "tco",
   "unprotected"
 ] }

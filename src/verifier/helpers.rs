@@ -20,7 +20,6 @@ pub(crate) fn generate() -> eyre::Result<Vec<u8>> {
 
     // Generate and return the verifier's bytecode.
     let sol_code = sdk.generate_halo2_verifier_solidity()?.halo2_verifier_code;
-    std::fs::write("/tmp/halo2_verifier.sol", &sol_code).ok();
 
     Ok(compile_solidity(&sol_code))
 }

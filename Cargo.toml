@@ -6,8 +6,8 @@ edition = "2024"
 [dependencies]
 
 # openvm
-openvm-native-recursion = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.4.1", default-features = false }
-openvm-sdk = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.4.1", default-features = false, features = [
+openvm-native-recursion = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.4.0", default-features = false }
+openvm-sdk = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.4.0", default-features = false, features = [
   "parallel",
   "evm-prove",
   "evm-verify",

@@ -6,9 +6,15 @@ edition = "2024"
 [dependencies]
 
 # openvm
-openvm-native-recursion = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.2.1-rc.1", default-features = false }
-openvm-sdk = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.2.1-rc.1", default-features = false, features = ["parallel", "bench-metrics", "evm-prove"] }
-openvm-stark-sdk = { git = "https://github.com/openvm-org/stark-backend.git", rev = "f48090c9febd021f8ee0349bc929a775fb1fa3ad" }
+openvm-native-recursion = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.4.0", default-features = false }
+openvm-sdk = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.4.0", default-features = false, features = [
+  "parallel",
+  "evm-prove",
+  "evm-verify",
+  "tco",
+  "unprotected"
+] }
+openvm-stark-sdk = { git = "https://github.com/openvm-org/stark-backend.git", tag = "v1.2.1" }
 
 # revm
 revm = "=24.0.0"
@@ -21,25 +27,24 @@ snark-verifier-sdk = { version = "=0.2.1", default-features = false, features = 
 ] }
 
 # scroll-tech/zkvm-prover
-scroll-zkvm-verifier = { git = "https://github.com/scroll-tech/zkvm-prover", tag = "0.5.2" }
+scroll-zkvm-verifier = { git = "https://github.com/scroll-tech/zkvm-prover", tag = "v0.7.0" }
 
 # miscellaneous
 clap = "4"
 eyre = "0.6"
 hex = "0.4"
+reqwest = { version = "0.12", features = ["blocking"] }
 
 [patch.crates-io]
-revm = { git = "https://github.com/scroll-tech/revm", branch = "feat/reth-v78" }
-revm-bytecode = { git = "https://github.com/scroll-tech/revm", branch = "feat/reth-v78" }
-revm-context = { git = "https://github.com/scroll-tech/revm", branch = "feat/reth-v78" }
-revm-context-interface = { git = "https://github.com/scroll-tech/revm", branch = "feat/reth-v78" }
-revm-database = { git = "https://github.com/scroll-tech/revm", branch = "feat/reth-v78" }
-revm-database-interface = { git = "https://github.com/scroll-tech/revm", branch = "feat/reth-v78" }
-revm-handler = { git = "https://github.com/scroll-tech/revm", branch = "feat/reth-v78" }
-revm-inspector = { git = "https://github.com/scroll-tech/revm", branch = "feat/reth-v78" }
-revm-interpreter = { git = "https://github.com/scroll-tech/revm", branch = "feat/reth-v78" }
-revm-precompile = { git = "https://github.com/scroll-tech/revm", branch = "feat/reth-v78" }
-revm-primitives = { git = "https://github.com/scroll-tech/revm", branch = "feat/reth-v78" }
-revm-state = { git = "https://github.com/scroll-tech/revm", branch = "feat/reth-v78" }
-alloy-primitives = { git = "https://github.com/scroll-tech/alloy-core", branch = "v1.2.0" }
-ruint = { git = "https://github.com/scroll-tech/uint.git", branch = "v1.15.0" }
+revm = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-bytecode = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-context = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-context-interface = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-database = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-database-interface = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-handler = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-inspector = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-interpreter = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-precompile = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-primitives = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }
+revm-state = { git = "https://github.com/scroll-tech/revm", tag = "scroll-v91" }

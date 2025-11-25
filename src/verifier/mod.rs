@@ -2,14 +2,25 @@ use clap::Args;
 
 mod deploy;
 
-mod generate;
+mod helpers;
 
 #[derive(Debug, Args)]
-pub struct GenerateCommand;
+pub struct GenerateCommand {
+    #[arg(
+        long = "recompute",
+        help = "Recompute the Halo2 Solidity Verifier",
+        default_value = "false"
+    )]
+    pub recompute: bool,
+}
 
 impl GenerateCommand {
     pub fn run(self) -> eyre::Result<()> {
-        let init_code = generate::generate()?;
+        let init_code = if self.recompute {
+            helpers::generate()?
+        } else {
+            helpers::download_and_compile()?
+        };
 
         let (deployed_code, codehash) = deploy::deploy(&init_code)?;
 

@@ -9,8 +9,8 @@ pub struct ComputeCommand;
 impl ComputeCommand {
     pub fn run(self) -> eyre::Result<()> {
         let (exe, leaf) = (
-            scroll_zkvm_verifier::commitments::bundle::EXE_COMMIT,
-            scroll_zkvm_verifier::commitments::bundle::LEAF_COMMIT,
+            scroll_zkvm_verifier::commitments::EXE_COMMIT,
+            scroll_zkvm_verifier::commitments::VM_COMMIT,
         );
 
         // Fr::to_bytes(&self) spits out little-endian bytes, so we reverse the order to finally
@@ -26,8 +26,8 @@ impl ComputeCommand {
             .rev()
             .collect::<Vec<u8>>();
 
-        println!("Feynman: digest-1={}", digest_1.encode_hex::<String>());
-        println!("Feynman: digest-2={}", digest_2.encode_hex::<String>());
+        println!("digest-1={}", digest_1.encode_hex::<String>());
+        println!("digest-2={}", digest_2.encode_hex::<String>());
 
         Ok(())
     }

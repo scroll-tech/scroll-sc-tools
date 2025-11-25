@@ -1,6 +1,6 @@
 # Scroll Security Council Tools
 
-The repository offers tools for the Security Council to run and validate certain operations against Scroll's ZkVM [release](https://github.com/scroll-tech/zkvm-prover/releases/tag/v0.2.0)
+The repository offers tools for the Security Council to run and validate certain operations against Scroll's ZkVM [release](https://github.com/scroll-tech/zkvm-prover/releases/tag/v0.7.0)
 
 ## Setup
 
@@ -11,7 +11,7 @@ $ git clone git@github.com:scroll-tech/scroll-sc-tools.git && cd scroll-sc-tools
 - [Install Rust](https://www.rust-lang.org/tools/install)
 - Install Specific Nightly Toolchain (specified in [rust-toolchain.toml](./rust-toolchain.toml))
 ```
-rustup toolchain install nightly-2025-02-14
+rustup toolchain install nightly-2025-08-18
 ```
 
 ## Generate Verifier
@@ -35,19 +35,23 @@ $ svm install 0.8.19
 $ solc --version
 ```
 
-In order to generate the verifier contract, we also need to first get the KZG trusted setup parameters.
+In order to generate the verifier contract, we can either download the source from [`OpenVM`](https://github.com/openvm-org/openvm-solidity-sdk/blob/v1.4/src/v1.4/Halo2Verifier.sol) or re-compute it.
 
-* Download the params
+* Download the verifier contract:
 ```shell
+$ cargo run --release -- generate-verifier
+```
+
+* Re-compute the verifier contract (using [`OpenVM SDK`](https://github.com/openvm-org/openvm/blob/v1.4.0/crates/sdk/src/lib.rs#L804)):
+```shell
+# download SRS parameters
 $ bash scripts/download-params.sh
+
+# generate verifier
+$ RUST_MIN_STACK=16777216 cargo run --release -- generate-verifier --recompute
 ```
 
-* Generate the verifier contract:
-```shell
-$ RUST_MIN_STACK=16777216 cargo run --release -- generate-verifier
-```
-
-Note: The above step requires very large amounts of computation and memory (~200 GB). It took about 4 minutes on AWS c7a.24xlarge.
+Note: Re-computation requires very large amounts of computation and memory (~200 GB). It took about 4 minutes on AWS c7a.24xlarge.
 
 ## Compute Digests
 
@@ -62,6 +66,5 @@ potentially post digests for malicious circuitry. These digests are available on
 An independent party can re-compute these digests from the ZkVM released circuitry and validate against on-chain values.
 
 ```shell
-# Feynman
 $ cargo run --release -- compute-digest
 ```

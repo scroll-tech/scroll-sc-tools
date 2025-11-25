@@ -2,9 +2,9 @@ use clap::Subcommand;
 
 #[derive(Debug, Subcommand)]
 pub enum Commands {
-    #[command(about = "")]
+    #[command(about = "Generate EVM PLONK verifier")]
     GenerateVerifier(crate::verifier::GenerateCommand),
-    #[command(about = "")]
+    #[command(about = "Compute OpenVM digests (VK)")]
     ComputeDigest(crate::digest::ComputeCommand),
 }
 

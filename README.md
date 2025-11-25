@@ -35,19 +35,23 @@ $ svm install 0.8.19
 $ solc --version
 ```
 
-In order to generate the verifier contract, we also need to first get the KZG trusted setup parameters.
+In order to generate the verifier contract, we can either download the source from [`OpenVM`](https://github.com/openvm-org/openvm-solidity-sdk/blob/v1.4/src/v1.4/Halo2Verifier.sol) or re-compute it.
 
-* Download the params
+* Download the verifier contract:
 ```shell
+$ cargo run --release -- generate-verifier
+```
+
+* Re-compute the verifier contract (using [`OpenVM SDK`](https://github.com/openvm-org/openvm/blob/v1.4.0/crates/sdk/src/lib.rs#L804)):
+```shell
+# download SRS parameters
 $ bash scripts/download-params.sh
+
+# generate verifier
+$ RUST_MIN_STACK=16777216 cargo run --release -- generate-verifier --recompute
 ```
 
-* Generate the verifier contract:
-```shell
-$ RUST_MIN_STACK=16777216 cargo run --release -- generate-verifier
-```
-
-Note: The above step requires very large amounts of computation and memory (~200 GB). It took about 4 minutes on AWS c7a.24xlarge.
+Note: Re-computation requires very large amounts of computation and memory (~200 GB). It took about 4 minutes on AWS c7a.24xlarge.
 
 ## Compute Digests
 

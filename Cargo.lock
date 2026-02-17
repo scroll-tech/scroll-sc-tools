@@ -8432,13 +8432,13 @@ dependencies = [
 
 [[package]]
 name = "rkyv"
-version = "0.8.12"
+version = "0.8.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "35a640b26f007713818e9a9b65d34da1cf58538207b052916a83d80e43f3ffa4"
+checksum = "360b333c61ae24e5af3ae7c8660bd6b21ccd8200dbbc5d33c2454421e85b9c69"
 dependencies = [
  "bytecheck",
  "bytes",
- "hashbrown 0.15.5",
+ "hashbrown 0.16.1",
  "indexmap 2.12.1",
  "munge",
  "ptr_meta",
@@ -8451,9 +8451,9 @@ dependencies = [
 
 [[package]]
 name = "rkyv_derive"
-version = "0.8.12"
+version = "0.8.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bd83f5f173ff41e00337d97f6572e416d022ef8a19f371817259ae960324c482"
+checksum = "7c02f8cdd12b307ab69fe0acf4cd2249c7460eb89dce64a0febadf934ebb6a9e"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -8852,7 +8852,7 @@ dependencies = [
 [[package]]
 name = "scroll-zkvm-types"
 version = "0.7.1"
-source = "git+https://github.com/scroll-tech/zkvm-prover?tag=v0.7.1#85dc6bc56728b8eef22281fdb215c136d7b5bbda"
+source = "git+ssh://github.com/scroll-tech/zkvm-prover-issue?rev=fa943eb53ee7c9dcd5966c6df4a7dbc5e15bc3ed#fa943eb53ee7c9dcd5966c6df4a7dbc5e15bc3ed"
 dependencies = [
  "alloy-primitives 1.4.1",
  "base64 0.22.1",
@@ -8876,7 +8876,7 @@ dependencies = [
 [[package]]
 name = "scroll-zkvm-types-base"
 version = "0.7.1"
-source = "git+https://github.com/scroll-tech/zkvm-prover?tag=v0.7.1#85dc6bc56728b8eef22281fdb215c136d7b5bbda"
+source = "git+ssh://github.com/scroll-tech/zkvm-prover-issue?rev=fa943eb53ee7c9dcd5966c6df4a7dbc5e15bc3ed#fa943eb53ee7c9dcd5966c6df4a7dbc5e15bc3ed"
 dependencies = [
  "alloy-primitives 1.4.1",
  "alloy-serde 1.1.2",
@@ -8889,7 +8889,7 @@ dependencies = [
 [[package]]
 name = "scroll-zkvm-types-batch"
 version = "0.7.1"
-source = "git+https://github.com/scroll-tech/zkvm-prover?tag=v0.7.1#85dc6bc56728b8eef22281fdb215c136d7b5bbda"
+source = "git+ssh://github.com/scroll-tech/zkvm-prover-issue?rev=fa943eb53ee7c9dcd5966c6df4a7dbc5e15bc3ed#fa943eb53ee7c9dcd5966c6df4a7dbc5e15bc3ed"
 dependencies = [
  "alloy-primitives 1.4.1",
  "c-kzg",
@@ -8911,7 +8911,7 @@ dependencies = [
 [[package]]
 name = "scroll-zkvm-types-bundle"
 version = "0.7.1"
-source = "git+https://github.com/scroll-tech/zkvm-prover?tag=v0.7.1#85dc6bc56728b8eef22281fdb215c136d7b5bbda"
+source = "git+ssh://github.com/scroll-tech/zkvm-prover-issue?rev=fa943eb53ee7c9dcd5966c6df4a7dbc5e15bc3ed#fa943eb53ee7c9dcd5966c6df4a7dbc5e15bc3ed"
 dependencies = [
  "rkyv",
  "scroll-zkvm-types-base",
@@ -8921,12 +8921,13 @@ dependencies = [
 [[package]]
 name = "scroll-zkvm-types-chunk"
 version = "0.7.1"
-source = "git+https://github.com/scroll-tech/zkvm-prover?tag=v0.7.1#85dc6bc56728b8eef22281fdb215c136d7b5bbda"
+source = "git+ssh://github.com/scroll-tech/zkvm-prover-issue?rev=fa943eb53ee7c9dcd5966c6df4a7dbc5e15bc3ed#fa943eb53ee7c9dcd5966c6df4a7dbc5e15bc3ed"
 dependencies = [
  "alloy-consensus",
  "alloy-primitives 1.4.1",
  "alloy-sol-types 1.4.1",
  "ecies",
+ "hex-literal",
  "itertools 0.14.0",
  "k256 0.13.4 (git+https://github.com/openvm-org/openvm.git?tag=v1.4.1)",
  "openvm-ecc-guest 1.4.1",
@@ -8946,7 +8947,7 @@ dependencies = [
 [[package]]
 name = "scroll-zkvm-verifier"
 version = "0.7.1"
-source = "git+https://github.com/scroll-tech/zkvm-prover?tag=v0.7.1#85dc6bc56728b8eef22281fdb215c136d7b5bbda"
+source = "git+ssh://github.com/scroll-tech/zkvm-prover-issue?rev=fa943eb53ee7c9dcd5966c6df4a7dbc5e15bc3ed#fa943eb53ee7c9dcd5966c6df4a7dbc5e15bc3ed"
 dependencies = [
  "bincode",
  "eyre",
@@ -10321,9 +10322,9 @@ checksum = "06abde3611657adf66d383f00b093d7faecc7fa57071cce2578660c9f1010821"
 
 [[package]]
 name = "uuid"
-version = "1.18.1"
+version = "1.21.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2f87b8aa10b915a06587d0dec516c282ff295b475d94abf425d62b57710070a2"
+checksum = "b672338555252d43fd2240c714dc444b8c6fb0a5c5335e65a07bba7742735ddb"
 dependencies = [
  "js-sys",
  "wasm-bindgen",

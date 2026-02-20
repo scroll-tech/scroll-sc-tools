@@ -6,15 +6,15 @@ edition = "2024"
 [dependencies]
 
 # openvm
-openvm-native-recursion = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.4.0", default-features = false }
-openvm-sdk = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.4.0", default-features = false, features = [
+openvm-native-recursion = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.4.3", default-features = false }
+openvm-sdk = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.4.3", default-features = false, features = [
   "parallel",
   "evm-prove",
   "evm-verify",
   "tco",
   "unprotected",
 ] }
-openvm-stark-sdk = { git = "https://github.com/openvm-org/stark-backend.git", tag = "v1.2.1" }
+openvm-stark-sdk = { git = "https://github.com/openvm-org/stark-backend.git", tag = "v1.2.3" }
 
 # revm
 revm = "=24.0.0"
@@ -27,7 +27,7 @@ snark-verifier-sdk = { version = "=0.2.1", default-features = false, features = 
 ] }
 
 # scroll-tech/zkvm-prover
-scroll-zkvm-verifier = { git = "ssh://github.com/scroll-tech/zkvm-prover-issue", rev = "fa943eb53ee7c9dcd5966c6df4a7dbc5e15bc3ed" }
+scroll-zkvm-verifier = { git = "ssh://github.com/scroll-tech/zkvm-prover-issue", rev = "fbb5ad85cc95fd90061171ccf8f52ca069cd6607" }
 
 # miscellaneous
 clap = "4"

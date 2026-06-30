@@ -6,15 +6,14 @@ edition = "2024"
 [dependencies]
 
 # openvm
-openvm-native-recursion = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.4.0", default-features = false }
-openvm-sdk = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.4.0", default-features = false, features = [
+openvm-native-recursion = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.6.0", default-features = false }
+openvm-sdk = { git = "https://github.com/openvm-org/openvm.git", tag = "v1.6.0", default-features = false, features = [
   "parallel",
   "evm-prove",
-  "evm-verify",
   "tco",
   "unprotected",
 ] }
-openvm-stark-sdk = { git = "https://github.com/openvm-org/stark-backend.git", tag = "v1.2.1" }
+openvm-stark-sdk = { git = "https://github.com/openvm-org/stark-backend.git", tag = "v1.4.0" }
 
 # revm
 revm = "=24.0.0"
@@ -24,10 +23,11 @@ snark-verifier-sdk = { version = "=0.2.1", default-features = false, features = 
   "loader_halo2",
   "halo2-axiom",
   "display",
+  "revm",
 ] }
 
 # scroll-tech/zkvm-prover
-scroll-zkvm-verifier = { git = "https://github.com/scroll-tech/zkvm-prover", tag = "v0.7.2" }
+scroll-zkvm-verifier = { git = "https://github.com/scroll-tech/zkvm-prover", tag = "v0.8.0" }
 
 # miscellaneous
 clap = "4"

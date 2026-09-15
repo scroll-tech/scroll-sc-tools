@@ -1,6 +1,6 @@
 # Scroll Security Council Tools
 
-The repository offers tools for the Security Council to run and validate certain operations against Scroll's ZkVM [release](https://github.com/scroll-tech/zkvm-prover/releases/tag/v0.7.0)
+The repository offers tools for the Security Council to run and validate certain operations against Scroll's ZkVM [release](https://github.com/scroll-tech/zkvm-prover/releases/tag/v0.8.0)
 
 ## Setup
 
@@ -35,14 +35,16 @@ $ svm install 0.8.19
 $ solc --version
 ```
 
-In order to generate the verifier contract, we can either download the source from [`OpenVM`](https://github.com/openvm-org/openvm-solidity-sdk/blob/v1.4/src/v1.4/Halo2Verifier.sol) or re-compute it.
+* For `--recompute` only: install [Foundry](https://getfoundry.sh/) **v1.5.0**. The re-computed verifier source must be formatted with the same `forge fmt` version used by OpenVM to publish `Halo2Verifier.sol`, otherwise the embedded `solc` metadata hash (and thus the codehash) will not match the deployed verifier.
+
+In order to generate the verifier contract, we can either download the source from [`OpenVM`](https://github.com/openvm-org/openvm-solidity-sdk/blob/v1.6/src/v1.6/Halo2Verifier.sol) or re-compute it.
 
 * Download the verifier contract:
 ```shell
 $ cargo run --release -- generate-verifier
 ```
 
-* Re-compute the verifier contract (using [`OpenVM SDK`](https://github.com/openvm-org/openvm/blob/v1.4.0/crates/sdk/src/lib.rs#L804)):
+* Re-compute the verifier contract (using [`OpenVM SDK`](https://github.com/openvm-org/openvm/blob/v1.6.0/crates/sdk/src/lib.rs#L805)):
 ```shell
 # download SRS parameters
 $ bash scripts/download-params.sh
@@ -52,6 +54,8 @@ $ RUST_MIN_STACK=16777216 cargo run --release -- generate-verifier --recompute
 ```
 
 Note: Re-computation requires very large amounts of computation and memory (~200 GB). It took about 4 minutes on AWS c7a.24xlarge.
+
+Because `solc` embeds a metadata hash derived from the exact Solidity source text, the re-computed verifier must be formatted identically to the published `Halo2Verifier.sol` before compilation. `generate-verifier --recompute` therefore invokes `forge fmt` with the same formatter configuration used by OpenVM. For the resulting codehash to match the deployed verifier, the local `forge` binary should be **Foundry v1.5.0** (the version used to publish the OpenVM v1.6 verifier). Using a different `forge` version may produce a different codehash even though the verifier runtime logic is identical; in that case run `cargo run --release -- generate-verifier` (download mode) to obtain the exact on-chain codehash.
 
 ## Compute Digests
 

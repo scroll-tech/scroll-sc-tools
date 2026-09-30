@@ -117,12 +117,80 @@ fn compile_verifier(
     hex::decode(bytecode).map_err(|e| eyre::eyre!("solc returned invalid hex: {e}"))
 }
 
+/// Foundry formatter configuration used by OpenVM when publishing the verifier.
+/// `solc` embeds a metadata hash that depends on the exact source text, so
+/// re-generated code must be formatted identically before compilation in order
+/// to reproduce the on-chain codehash.
+const FOUNDRY_FMT_TOML: &str = r#"[fmt]
+sort_imports = true
+bracket_spacing = true
+int_types = "long"
+line_length = 120
+multiline_func_header = "attributes_first"
+number_underscore = "thousands"
+quote_style = "double"
+single_line_statement_blocks = "single"
+tab_width = 4
+wrap_comments = false
+"#;
+
+/// Format Solidity source with `forge fmt` using the canonical formatter config.
+fn format_solidity(sol_code: &str) -> eyre::Result<String> {
+    let temp_dir = std::env::temp_dir().join("scroll-sc-tools-verifier-fmt");
+    let _ = std::fs::remove_dir_all(&temp_dir);
+    std::fs::create_dir_all(&temp_dir)?;
+
+    let result = (|| {
+        let sol_path = temp_dir.join("Verifier.sol");
+        let config_path = temp_dir.join("foundry.toml");
+        std::fs::write(&config_path, FOUNDRY_FMT_TOML)?;
+        std::fs::write(&sol_path, sol_code)?;
+
+        let format_output = std::process::Command::new("forge")
+            .arg("fmt")
+            .arg(&sol_path)
+            .current_dir(&temp_dir)
+            .output();
+
+        match format_output {
+            Ok(output) if output.status.success() => {
+                std::fs::read_to_string(&sol_path).map_err(Into::into)
+            }
+            Ok(output) => {
+                let stderr = String::from_utf8_lossy(&output.stderr);
+                Err(eyre::eyre!("forge fmt failed: {stderr}"))
+            }
+            Err(e) => Err(eyre::eyre!("failed to spawn forge fmt: {e}")),
+        }
+    })();
+
+    let _ = std::fs::remove_dir_all(&temp_dir);
+    result
+}
+
 /// Re-generate the EVM verifier from the circuit and return its initcode.
 ///
-/// This mirrors `openvm-solidity-sdk`'s own `generate-verifier` tool, so the
-/// emitted Solidity is already the canonical text and needs no reformatting
-/// before it compiles to the published bytecode.
+/// The SDK emits unformatted Solidity, so the sources are formatted with
+/// `forge fmt` before compilation, as in `openvm-solidity-sdk`.
 pub(crate) fn generate() -> eyre::Result<Vec<u8>> {
+    // OpenVM checks the published sources with Foundry v1.5.0. Other versions
+    // may format differently, which changes the codehash.
+    match std::process::Command::new("forge")
+        .arg("--version")
+        .output()
+    {
+        Ok(output) if output.status.success() => {
+            let version = String::from_utf8_lossy(&output.stdout);
+            if !version.contains("1.5.0") {
+                eprintln!(
+                    "Warning: local forge version is {}; for the re-computed codehash to match the deployed verifier, use Foundry v1.5.0.",
+                    version.trim()
+                );
+            }
+        }
+        _ => eprintln!("Warning: could not determine local forge version."),
+    }
+
     let app_params = app_params_with_100_bits_security(MAX_APP_LOG_STACKED_HEIGHT);
     let agg_params = AggregationSystemParams::default();
     let hook_commits =
@@ -137,9 +205,9 @@ pub(crate) fn generate() -> eyre::Result<Vec<u8>> {
     let verifier = sdk.generate_halo2_verifier_solidity_with_version_name(VERIFIER_VARIANT)?;
 
     compile_verifier(
-        &verifier.halo2_verifier_code,
-        &verifier.openvm_verifier_code,
-        &verifier.openvm_verifier_interface,
+        &format_solidity(&verifier.halo2_verifier_code)?,
+        &format_solidity(&verifier.openvm_verifier_code)?,
+        &format_solidity(&verifier.openvm_verifier_interface)?,
     )
 }
 

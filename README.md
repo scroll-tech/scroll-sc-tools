@@ -32,7 +32,16 @@ $ cargo install svm-rs
 
 $ svm install 0.8.19
 
+$ svm use 0.8.19
+
 $ solc --version
+```
+
+* For `--recompute` only: install [Foundry](https://getfoundry.sh/) **v1.5.0**, the version OpenVM uses to format the published verifier.
+```shell
+$ foundryup --install v1.5.0
+
+$ forge --version
 ```
 
 The deployed contract is [`OpenVmHalo2Verifier`](https://github.com/openvm-org/openvm-solidity-sdk/blob/v2.0/src/v2.0-deferral/OpenVmHalo2Verifier.sol), a thin wrapper that inherits the flat [`Halo2Verifier`](https://github.com/openvm-org/openvm-solidity-sdk/blob/v2.0/src/v2.0-deferral/Halo2Verifier.sol). Scroll's bundle circuit defers proof verification, so it uses the `v2.0-deferral` variant rather than `v2.0-base`.
@@ -56,6 +65,8 @@ $ RUST_MIN_STACK=16777216 cargo run --release -- generate-verifier --recompute
 Note: Re-computation requires very large amounts of computation and memory (~200 GB). It took about 4 minutes on AWS c7a.24xlarge.
 
 `solc` embeds a metadata hash that covers the source unit names and the compiler settings, and that hash is part of the deployed bytecode. Both modes therefore compile through `solc --standard-json` using the same source paths (`src/v2.0-deferral/...`) and settings as the OpenVM SDK: optimizer enabled with 100000 runs, `constantOptimizer` and the Yul optimizer both off, `evmVersion` `paris`, and the `forge-std/` remapping. Changing any of these changes the codehash even though the executable code is identical. The compiler version needs no separate check, since the sources pin `pragma solidity 0.8.19`.
+
+The metadata hash also depends on the exact source text. The OpenVM SDK generates unformatted Solidity, while the published files are formatted with `forge fmt`. `--recompute` therefore formats the generated sources with OpenVM's `forge fmt` settings before compiling. Other Foundry versions may format differently and produce a different codehash.
 
 For reference, release `v0.9.0` produces codehash `0x00dfb6855747412fa70b8a75aaa4950f1deafaace9d2a4e9923ad2e1a3589928`.
 

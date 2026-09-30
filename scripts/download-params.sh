@@ -5,7 +5,7 @@ params_dir="$HOME/.openvm/params"
 mkdir -p "$params_dir"
 
 # Degrees relevant to Scroll Verifier.
-degrees=("22" "24")
+degrees=("22" "23" "24")
 
 # Download setup params for each degree.
 for degree in "${degrees[@]}"; do
